@@ -29,12 +29,12 @@ jobs:
           cp .config openwrt/.config
 
       - name: Build OpenWrt firmware
-  run: |
-    cd openwrt
-    ./scripts/feeds update -a
-    ./scripts/feeds install -a
-    make defconfig
-    make -j$(nproc) V=s
+        run: |
+          cd openwrt
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+          make defconfig
+          make -j$(nproc) V=s
 
 
       - name: Upload firmware
