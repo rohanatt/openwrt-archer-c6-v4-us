@@ -28,11 +28,14 @@ jobs:
         run: |
           cp .config openwrt/.config
 
-      - name: Build firmware
-        run: |
-          cd openwrt
-          make defconfig
-          make -j$(nproc)
+      - name: Build OpenWrt firmware
+  run: |
+    cd openwrt
+    ./scripts/feeds update -a
+    ./scripts/feeds install -a
+    make defconfig
+    make -j$(nproc) V=s
+
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
